@@ -25,7 +25,6 @@ public class Storage {
         int i =0;
         for (String s : names){
             if (i == names.size()-1) {
-
                 returnString.append(s.trim() + "!");
             } else returnString.append(s.trim() + ", ");
             i++;

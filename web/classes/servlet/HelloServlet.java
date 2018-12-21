@@ -26,21 +26,11 @@ public class HelloServlet extends HttpServlet {
 
         HelloService.getInstance().save(postReq);
         out.println(HelloService.getInstance().getReturnString());
-        //JSONObject postData = new JSONObject();
-
-        //postData.put("name",req.getReader());
-        //out.println(postData.get("name"));
-
-        //HelloService.getInstance().save(postData);
-        //out.println(HelloService.getInstance().getReturnString());
-
-
     }
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-       // doPost(req,resp);
-        PrintWriter out = resp.getWriter();
+       PrintWriter out = resp.getWriter();
         out.println("GET-method is not allowed");
     }
 }
