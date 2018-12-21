@@ -6,11 +6,11 @@ import org.json.JSONObject;
 public class HelloService {
     private static HelloService INSTANCE;
 
-    public void save(JSONObject json) {
+    public void saveToStorage(JSONObject json) {
         Storage.getInstance().addName(json.toString());
     }
 
-    public void save(String name){
+    public void saveToStorage(String name){
         Storage.getInstance().addName(name);
     }
 

@@ -1,7 +1,6 @@
 package servlet;
 
 import main.service.HelloService;
-import org.json.JSONObject;
 
 
 import javax.servlet.ServletException;
@@ -24,7 +23,7 @@ public class HelloServlet extends HttpServlet {
         String postReq = input.readLine();
         input.close();
 
-        HelloService.getInstance().save(postReq);
+        HelloService.getInstance().saveToStorage(postReq);
         out.println(HelloService.getInstance().getReturnString());
     }
 
