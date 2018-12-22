@@ -1,5 +1,6 @@
 package servlet;
 
+import main.log.LoggerInitializer;
 import main.service.HelloService;
 import main.storage.Storage;
 
@@ -18,21 +19,11 @@ import java.util.logging.Logger;
 @WebServlet("/")
 public class HelloServlet extends HttpServlet {
 
-    private static Logger log = Logger.getLogger(Storage.class.getPackage().getName());
-
-    private void loggerInit(){
-        try
-        {
-            LogManager.getLogManager().readConfiguration(Storage.class.getResourceAsStream("/logger.properties"));
-        } catch (SecurityException | IOException e) {
-            e.printStackTrace();
-        }
-    }
-
+    private static Logger log = Logger.getLogger(HelloServlet.class.getPackage().getName());
 
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        loggerInit();
+        LoggerInitializer.getInstance();
         PrintWriter out = resp.getWriter();
         BufferedReader input = req.getReader();
         String postReq = input.readLine();
@@ -42,19 +33,16 @@ public class HelloServlet extends HttpServlet {
         String response = HelloService.getInstance().getReturnString();
         log.log(Level.INFO, "Outcomming POST-response with: response = '" +response+"'"  );
         out.println(response);
-
-
     }
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-       loggerInit();
+       LoggerInitializer.getInstance();
        PrintWriter out = resp.getWriter();
        log.log(Level.INFO, "Incomming GET-request.");
        String outputString = HelloService.getInstance().getStartPageContext();
        out.println(outputString.isEmpty() ? "Hello world!" : outputString);
        out.println("GET-method is not allowed");
        log.log(Level.INFO, "Start-page returned by GET-request");
-
     }
 }

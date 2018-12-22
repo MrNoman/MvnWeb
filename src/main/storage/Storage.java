@@ -11,16 +11,6 @@ public class Storage {
 
     private static Logger log = Logger.getLogger(Storage.class.getPackage().getName());
 
-    private void loggerInit(){
-        try
-        {
-            LogManager.getLogManager().readConfiguration(Storage.class.getResourceAsStream("/logger.properties"));
-        } catch (SecurityException | IOException e) {
-            e.printStackTrace();
-        }
-    }
-
-
     private List<String> names = new LinkedList<String>();
 
     private Storage (){}
@@ -37,7 +27,7 @@ public class Storage {
     }
 
     public String returnGreetingString(){
-        loggerInit();
+        //loggerInit();
         StringBuffer returnString = new StringBuffer();
         int i =0;
         for (String s : names){
@@ -53,13 +43,11 @@ public class Storage {
     }
 
     public void addName(String name){
-        loggerInit();
         log.log(Level.INFO, "Adding name: '" + name + "' to storage");
         names.add(name);
     }
 
     public boolean isEmpty(){
-        loggerInit();
         log.log(Level.INFO,"called Storage.isEmpty() method, return " + names.isEmpty());
        return names.isEmpty();
     }
