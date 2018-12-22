@@ -8,7 +8,6 @@ import java.util.logging.LogManager;
 
 public class LoggerInitializer {
     private static volatile LoggerInitializer instance;
-    //private boolean isInit = false;
 
     private LoggerInitializer (){}
 
@@ -28,10 +27,8 @@ public class LoggerInitializer {
         try
         {
             LogManager.getLogManager().readConfiguration(HelloServlet.class.getResourceAsStream("/logger.properties"));
-            //isInit = true;
         } catch (SecurityException | IOException e) {
             e.printStackTrace();
-            //isInit = false;
         }
     }
 
