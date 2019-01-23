@@ -12,6 +12,7 @@ public class Storage {
     private static Logger log = Logger.getLogger(Storage.class.getPackage().getName());
 
     private List<String> names = new LinkedList<String>();
+   // private
 
     private Storage (){}
 
@@ -27,16 +28,15 @@ public class Storage {
     }
 
     public String returnGreetingString(){
-        //loggerInit();
         StringBuffer returnString = new StringBuffer();
         int i =0;
         for (String s : names){
             if (i == names.size()-1) {
-                returnString.append(s.trim() + "!");
-            } else returnString.append(s.trim() + ", ");
+                returnString.append("\nHello " + s.trim() + "!");
+            } else returnString.append("\nHello " + s.trim() + "!");
             i++;
         }
-        returnString.insert(0, isEmpty() ? "" : "Hello ");
+      //  returnString.insert(0, isEmpty() ? "" : "Hello ");
 
         log.log(Level.INFO, "Stroage returned string: " + returnString);
         return returnString.toString();

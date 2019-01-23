@@ -3,9 +3,7 @@ package main.service;
 import main.storage.Storage;
 import org.json.JSONObject;
 
-import java.io.IOException;
 import java.util.logging.Level;
-import java.util.logging.LogManager;
 import java.util.logging.Logger;
 
 public class HelloService {
@@ -24,8 +22,10 @@ public class HelloService {
         return INSTANCE;
     }
 
-    public void saveToStorage(JSONObject json) {
-        Storage.getInstance().addName(json.toString());
+
+    public void saveJsonToStorage(JSONObject jsonObject) {
+
+        Storage.getInstance().addName(jsonObject.getString("name"));
     }
 
     public void saveToStorage(String name){
@@ -44,7 +44,7 @@ public class HelloService {
         String returnString = Storage.getInstance().returnGreetingString();
         if (returnString.isEmpty()) {
             log.log(Level.INFO, "called HelloService.getStartPageContext() method, returned empty string");
-            return "";
+            return "Request is empty! " + returnString;
         } else {
             log.log(Level.INFO, "called HelloService.getStartPageContext() method, returned '" + returnString+"'");
             return returnString;
